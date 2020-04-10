@@ -1,0 +1,37 @@
+<?php
+/*rename this file to DB.php*/
+
+namespace Api;
+
+class CommunityDB
+{
+    public static function pdo()
+    {
+        $host = 'localhost';
+        $db = 'databaseName';
+        $user = 'username';
+        $password = 'password';
+        $charset = 'utf8mb4';
+
+        $options = [
+            \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
+            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+            \PDO::ATTR_EMULATE_PREPARES   => false,
+        ];
+
+        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+        try {
+            return new \PDO($dsn, $user, $password, $options);
+        } catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+        }
+    }
+
+}
+
+
+
+
+
+
+
